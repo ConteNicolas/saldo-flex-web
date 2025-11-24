@@ -6,7 +6,7 @@ export class BaseService {
 
     public constructor(useToken: boolean = false) {
         this.api = axios.create({
-            baseURL: `${process.env.API_BASE_URL}/api`,
+            baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/`,
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -15,7 +15,7 @@ export class BaseService {
 
         if (useToken) {
             this.api.interceptors.request.use(async (config) => {
-                const token = localStorage.getItem('sfjt');
+                const token = localStorage.getItem('sf_token');
                 if (token) {
                     config.headers.Authorization = `Bearer ${token}`;
                 }
