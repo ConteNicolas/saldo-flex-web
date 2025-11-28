@@ -1,25 +1,22 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { SidebarProvider, SidebarTrigger } from "@/shared/components/ui/sidebar"
+import { AuthGuard } from "@/shared/guards/auth-guard"
+import UserProvider from "@/shared/providers/user-provider"
+import DashboardSidebar from "./components/dashboard-sidebar"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-    const router = useRouter();
-    const token = localStorage.getItem("sf_token");
-
-    useEffect(() => {
-        if (!token) {
-            router.replace("/sign-in");
-        }
-    }, [])
-
-    if (!token) {
-        return null;
-    }
-    
     return (
-        <div className="w-full h-full bg-white">
-            {children}
-        </div>
+        <AuthGuard authFailRedirectUrl="/sign-in">
+            <UserProvider>
+                <SidebarProvider>
+                    <DashboardSidebar />
+                    <div className="w-full h-full bg-white">
+                        <SidebarTrigger />
+                        {children}
+                    </div>
+                </SidebarProvider>
+            </UserProvider>
+        </AuthGuard>
     )
 }
