@@ -11,7 +11,7 @@ export default function useAuth() {
     const signIn = useMutation({
         mutationFn: async (data: ISignInRequest) => await authService.signIn(data),
         onSuccess: (data) => {
-            localStorage.setItem("sf_token", data.token);
+            sessionStorage.setItem("sf_token", data.token);
 
             toast.success(`Welcome!`);
 
@@ -34,8 +34,14 @@ export default function useAuth() {
         }
     })
 
+    const signOut = () => {
+        sessionStorage.removeItem("sf_token");
+        router.push("/")
+    }
+
     return {
         signIn,
-        signUp
+        signUp,
+        signOut
     }
 }
