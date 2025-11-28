@@ -15,7 +15,7 @@ export class BaseService {
 
         if (useToken) {
             this.api.interceptors.request.use(async (config) => {
-                const token = localStorage.getItem('sf_token');
+                const token = sessionStorage.getItem('sf_token');
                 if (token) {
                     config.headers.Authorization = `Bearer ${token}`;
                 }
