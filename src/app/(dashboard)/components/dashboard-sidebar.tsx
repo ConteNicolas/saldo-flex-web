@@ -5,22 +5,27 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 import { Switch } from "@/shared/components/ui/switch";
 import { userAtom } from "@/stores/user-store";
 import { useAtomValue } from "jotai";
-import { ClipboardPenIcon, HelpCircleIcon, LogOutIcon, SettingsIcon, TagsIcon, WalletIcon } from "lucide-react";
+import { ClipboardPenIcon, HelpCircleIcon, HomeIcon, LogOutIcon, SettingsIcon, TagsIcon, WalletIcon } from "lucide-react";
 
 const firstGroupItems = [
     {
+        "title": "Home",
+        "url": "/dashboard",
+        "icon": HomeIcon
+    },
+    {
         "title": "Financial plans",
-        "url": "/financial-plans",
+        "url": "/dashboard/financial-plans",
         "icon": ClipboardPenIcon
     },
     {
         "title": "Tags",
-        "url": "/tags",
+        "url": "/dashboard/tags",
         "icon": TagsIcon
     },
     {
         "title": "Currencies",
-        "url": "/currencies",
+        "url": "/dashboard/currencies",
         "icon": WalletIcon
     }
 ]
@@ -28,12 +33,12 @@ const firstGroupItems = [
 const secondGroupItems = [
     {
         "title": "Settings",
-        "url": "/settings",
+        "url": "/dashboard/settings",
         "icon": SettingsIcon
     },
     {
         "title": "Help",
-        "url": "/helps",
+        "url": "/dashboard/helps",
         "icon": HelpCircleIcon
     }
 ]
@@ -88,10 +93,10 @@ export default function DashboardSidebar() {
                     <SidebarMenuItem className="h-full">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <SidebarMenuButton className="h-full hover:bg-slate-200 transition cursor-pointer">
+                                <SidebarMenuButton className="h-full hover:bg-green-600 hover:text-white transition cursor-pointer">
                                     <div className="w-full h-full flex flex-row">
                                         <div className="w-[20%] h-full flex items-center justify-center">
-                                            <Avatar className="text-white flex items-center justify-center text-sm mb-1 size-12 bg-green-800">
+                                            <Avatar className="text-white flex items-center justify-center text-sm mb-1 size-12 bg-green-500">
                                                 <span className="mt-1">{user.alias}</span>
                                             </Avatar>
                                         </div>
@@ -106,7 +111,7 @@ export default function DashboardSidebar() {
                                 side="right"
                                 className="w-[--radix-popper-anchor-width]"
                             >
-                                <DropdownMenuItem onClick={signOut} className="cursor-pointer">
+                                <DropdownMenuItem onClick={signOut} className="cursor-pointer transition">
                                     <span>Sign out</span><LogOutIcon />
                                 </DropdownMenuItem>                                
                             </DropdownMenuContent>
