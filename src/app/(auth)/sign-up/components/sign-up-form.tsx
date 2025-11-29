@@ -44,9 +44,9 @@ export default function SignUpForm() {
 
     return (
         <div className="w-full h-full flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-light">Smart budgeting starts here 🚀</h1>
+            <h1 className="dark:text-black text-3xl font-bold">Smart budgeting starts here 🚀</h1>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 w-[63%]">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-1 w-[65%]">
                     <FormField
                         control={form.control}
                         name="firstname"

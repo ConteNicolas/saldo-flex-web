@@ -23,7 +23,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="w-full h-[82%] flex flex-col items-center justify-center">
-                    <span className="text-center text-6xl font-semibold text-shadow-sm text-shadow-slate-800">
+                    <span className="text-center text-6xl font-semibold dark:text-black text-shadow-sm text-shadow-slate-800">
                         Finance your way with{" "}
                         <span className="text-green-500 text-6xl font-bold text-shadow-md text-shadow-emerald-400-600">
                             Saldo Flex

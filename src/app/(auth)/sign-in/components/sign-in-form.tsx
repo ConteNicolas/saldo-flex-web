@@ -38,9 +38,9 @@ export default function SignInForm() {
 
     return (
         <div className="w-full h-full flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-light">Let’s get you back on track 🛠️</h1>
+            <h1 className="text-3xl dark:text-black font-bold">Let’s get you back on track 🛠️</h1>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 w-[63%]">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-1 w-[65%]">
                     <FormField
                         control={form.control}
                         name="username"
