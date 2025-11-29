@@ -1,6 +1,6 @@
 "use client"
 
-import useAuth from "@/features/auth/hooks/use-auth";
+import useSignUp from "@/features/auth/hooks/use-sign-up";
 import LoadingSpinner from "@/shared/components/loading-spinner";
 import { Button } from "@/shared/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form";
@@ -20,7 +20,7 @@ const schema = z.object({
 })
 
 export default function SignUpForm() {
-    const { mutateAsync, isPending } = useAuth().signUp
+    const { mutateAsync, isPending } = useSignUp();
 
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),

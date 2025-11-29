@@ -1,8 +1,7 @@
-import useAuth from "@/features/auth/hooks/use-auth";
+import useSignOut from "@/features/auth/hooks/use-sign-out";
 import { Avatar } from "@/shared/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/shared/components/ui/sidebar";
-import { Switch } from "@/shared/components/ui/switch";
 import { userAtom } from "@/stores/user-store";
 import { useAtomValue } from "jotai";
 import { ClipboardPenIcon, HelpCircleIcon, HomeIcon, LogOutIcon, SettingsIcon, TagsIcon, WalletIcon } from "lucide-react";
@@ -45,7 +44,7 @@ const secondGroupItems = [
 
 export default function DashboardSidebar() {
     const user = useAtomValue(userAtom);
-    const { signOut } = useAuth();
+    const { signOut } = useSignOut();
 
     return (
         <Sidebar className="h-full">
