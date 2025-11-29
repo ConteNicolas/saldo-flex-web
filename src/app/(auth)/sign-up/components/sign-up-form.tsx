@@ -54,7 +54,7 @@ export default function SignUpForm() {
                             <FormItem className="mt-8">
                                 <FormLabel>First name</FormLabel>
                                 <FormControl>
-                                    <Input className="h-12 border-purple-300 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-blue-500" placeholder="E.g. John" {...field} />
+                                    <Input className="h-12 border-green-300 focus-visible:border-purple-500 focus-visible:ring-0 focus-visible:ring-purple-500" placeholder="E.g. John" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -68,7 +68,7 @@ export default function SignUpForm() {
                             <FormItem className="mt-6">
                                 <FormLabel>Last name</FormLabel>
                                 <FormControl>
-                                    <Input className="h-12 border-purple-300 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-blue-500" placeholder="E.g. Foo" {...field} />
+                                    <Input className="h-12 border-green-300 focus-visible:border-purple-500 focus-visible:ring-0 focus-visible:ring-purple-500" placeholder="E.g. Foo" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -82,7 +82,7 @@ export default function SignUpForm() {
                             <FormItem className="mt-6">
                                 <FormLabel>Username</FormLabel>
                                 <FormControl>
-                                    <Input className="h-12 border-purple-300 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-blue-500" placeholder="E.g. TheAmazingJohnFoo" {...field} />
+                                    <Input className="h-12 border-green-300 focus-visible:border-purple-500 focus-visible:ring-0 focus-visible:ring-purple-500" placeholder="E.g. TheAmazingJohnFoo" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -96,7 +96,7 @@ export default function SignUpForm() {
                             <FormItem className="mt-6">
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <Input className="h-12 border-purple-300 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-blue-500" placeholder="E.g. jfoo@gmail.com" {...field} />
+                                    <Input className="h-12 border-green-300 focus-visible:border-purple-500 focus-visible:ring-0 focus-visible:ring-purple-500" placeholder="E.g. jfoo@gmail.com" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -110,14 +110,14 @@ export default function SignUpForm() {
                             <FormItem className="mt-6">
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input className="h-12 border-purple-300 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-blue-500" type="password" placeholder="E.g. secretpassword" {...field} />
+                                    <Input className="h-12 border-green-300 focus-visible:border-purple-500 focus-visible:ring-0 focus-visible:ring-purple-500" type="password" placeholder="E.g. secretpassword" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
 
-                    <Button className="mt-8 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 w-full h-12 rounded cursor-pointer">Sign up <LogInIcon /> </Button>
+                    <Button className="mt-8 bg-green-500 hover:bg-green-600 text-white px-4 py-2 w-full h-12 rounded-full cursor-pointer">Sign up <LogInIcon /> </Button>
                 </form>
             </Form>
         </div>

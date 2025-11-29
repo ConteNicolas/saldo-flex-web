@@ -45,7 +45,7 @@ export default function DashboardSidebar() {
     return (
         <Sidebar className="h-full">
             <SidebarHeader className="w-full h-[10%] flex items-center justify-center">
-                <h1 className="text-4xl font-light mt-4 text-purple-500">Saldo flex</h1>
+                <h1 className="text-4xl font-light mt-4 text-green-500">Saldo flex</h1>
             </SidebarHeader>
             <SidebarContent className="w-full h-[70%]">
                 <SidebarGroup className="p-6">
@@ -54,7 +54,7 @@ export default function DashboardSidebar() {
                         <SidebarMenu className="p-2">
                             {firstGroupItems.map(x =>
                                 <SidebarMenuItem key={x.title} className="rounded">
-                                    <SidebarMenuButton asChild className="h-12 hover:bg-purple-500 hover:text-white transition">
+                                    <SidebarMenuButton asChild className="h-12 hover:bg-green-500 hover:text-white transition">
                                         <a href={x.url}>
                                             <x.icon className="h-5! w-5!" />
                                             <span className="ml-4 mt-1 text-md">{x.title}</span>
@@ -71,7 +71,7 @@ export default function DashboardSidebar() {
                         <SidebarMenu className="p-2">
                             {secondGroupItems.map(x =>
                                 <SidebarMenuItem key={x.title} className="rounded">
-                                    <SidebarMenuButton asChild className="h-12 hover:bg-purple-500 hover:text-white transition w-full">
+                                    <SidebarMenuButton asChild className="h-12 hover:bg-green-500 hover:text-white transition w-full">
                                         <a href={x.url}>
                                             <x.icon className="h-5! w-5!" />
                                             <span className="ml-4 mt-1 text-md">{x.title}</span>
@@ -91,7 +91,7 @@ export default function DashboardSidebar() {
                                 <SidebarMenuButton className="h-full hover:bg-slate-200 transition cursor-pointer">
                                     <div className="w-full h-full flex flex-row">
                                         <div className="w-[20%] h-full flex items-center justify-center">
-                                            <Avatar className="text-white flex items-center justify-center text-sm mb-1 size-12 bg-purple-800">
+                                            <Avatar className="text-white flex items-center justify-center text-sm mb-1 size-12 bg-green-800">
                                                 <span className="mt-1">{user.alias}</span>
                                             </Avatar>
                                         </div>
