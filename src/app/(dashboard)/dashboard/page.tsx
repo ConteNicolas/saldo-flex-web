@@ -11,7 +11,7 @@ const introCards = [
     {
         "title": "Create a plan",
         "icon": ClipboardPenIcon,
-        "icon-color": "text-green-500",
+        "icon-color": "text-red-500",
         "url": "/dashboard/financial-plans"
     },
     {
@@ -23,7 +23,7 @@ const introCards = [
     {
         "title": "Set up currency",
         "icon": WalletIcon,
-        "icon-color": "text-green-500",
+        "icon-color": "text-yellow-500",
         "url": "/currencies"
     }
 ]
@@ -37,7 +37,7 @@ export default function DashboardPage() {
             <span className="text-lg mt-6">Get started by creating a financial plan or setting up your tags and currencies</span>
             <div className="w-[80%] mt-12 flex flex-row justify-evenly">
                 {introCards.map((intro) =>
-                    <Card key={intro.title} className="w-[25%] h-18 cursor-pointer hover:bg-slate-200 transition shadow-lg">
+                    <Card key={intro.title} className="w-[25%] h-18 cursor-pointer hover:bg-green-500 hover:text-white transition shadow-lg">
                         <CardContent className="flex flex-row justify-around h-full items-center">
                             <Link href={intro.url} className="w-full h-full flex flex-row justify-around items-center">
                                 <intro.icon className={intro["icon-color"]} />
