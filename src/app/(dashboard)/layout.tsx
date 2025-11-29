@@ -11,8 +11,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <UserProvider>
                 <SidebarProvider>
                     <DashboardSidebar />
-                    <div className="w-full h-full bg-white">
-                        <SidebarTrigger />
+                    <SidebarTrigger />
+                    <div className="w-screen h-screen bg-white">
                         {children}
                     </div>
                 </SidebarProvider>
