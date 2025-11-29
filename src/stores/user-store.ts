@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 
 
-export interface IUserStore {
+export interface IUserAtom {
     username: string;
     firstname: string;
     lastname: string;
@@ -9,7 +9,7 @@ export interface IUserStore {
     alias: string;
 }
 
-export const userAtom = atom<IUserStore>({
+export const userAtom = atom<IUserAtom>({
     username: "",
     firstname: "",
     lastname: "",
