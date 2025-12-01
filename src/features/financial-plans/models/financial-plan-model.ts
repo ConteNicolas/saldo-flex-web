@@ -4,15 +4,10 @@ export interface IFinancialPlan {
     description?: string;
     createdAt: Date;
     updatedAt: Date;
+    tags: IFinancialPlanTag[] 
 }
 
-export interface IGetAllFinancialPlansRequest {
-    page: number;
-    pageSize: number;
-    name?: string;
-}
-
-export interface IGetAllFinancialPlansResponse {
+export interface IFinancialPlanTag {
     id: string;
     name: string;
     description?: string;
@@ -20,13 +15,18 @@ export interface IGetAllFinancialPlansResponse {
     updatedAt: Date;
 }
 
+export interface IGetAllFinancialPlansResponse extends IFinancialPlan { }
+
+export interface ICreateFinancialPlanResponse extends IFinancialPlan { }
+
+export interface IGetAllFinancialPlansRequest {
+    page: number;
+    pageSize: number;
+    name?: string;
+}
+
 export interface ICreateFinancialPlanRequest {
     name: string;
     description?: string;
 }
 
-export interface ICreateFinancialPlanResponse {
-    id: string;
-    name: string;
-    description?: string;
-}
