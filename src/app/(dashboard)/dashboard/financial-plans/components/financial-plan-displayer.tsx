@@ -19,7 +19,6 @@ export default function FinancialPlanDisplayer() {
 
     useEffect(() => {
         if (isSuccess && data) {
-            console.log(data);
             setFinancialPlans(data.items);
         }
     }, [isSuccess, data])
