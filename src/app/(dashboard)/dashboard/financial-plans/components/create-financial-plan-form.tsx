@@ -16,9 +16,13 @@ const schema = z.object({
     description: z.string()
 })
 
+interface ICreateFinancialPlanFormProps {
+    closeSheet: () => void
+}
 
-export default function CreateFinancialPlanForm() {
-    const { mutateAsync, isPending } = useCreateFinancialPlan();
+
+export default function CreateFinancialPlanForm({ closeSheet }: ICreateFinancialPlanFormProps) {
+    const { mutateAsync, isPending, isSuccess } = useCreateFinancialPlan();
 
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
@@ -32,6 +36,12 @@ export default function CreateFinancialPlanForm() {
         await mutateAsync(values);
         form.reset();
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            closeSheet();
+        }
+    }, [isSuccess])
 
     if (isPending) {
         return <LoadingSpinner />
