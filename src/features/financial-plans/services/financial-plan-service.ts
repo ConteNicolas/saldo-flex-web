@@ -1,5 +1,5 @@
 import { BaseService } from "@/shared/services/base-service";
-import { IGetAllFinancialPlansRequest, IGetAllFinancialPlansResponse } from "../models/financial-plan-model";
+import { ICreateFinancialPlanRequest, ICreateFinancialPlanResponse, IGetAllFinancialPlansRequest, IGetAllFinancialPlansResponse } from "../models/financial-plan-model";
 import { IPaginatedResult } from "@/shared/models/pagination-model";
 import { getErrorMessageResponse, parseObjToQueryString } from "@/shared/lib/utils";
 
@@ -16,6 +16,16 @@ class FinancialPlanService extends BaseService {
 
             return response.data;
         } catch (err) {
+            throw new Error(getErrorMessageResponse(err));
+        }
+    }
+
+    async create(req: ICreateFinancialPlanRequest) : Promise<ICreateFinancialPlanResponse> {
+        try {
+            const response = await this.api.post<ICreateFinancialPlanResponse>("financial-plans", req);
+
+            return response.data;
+        } catch(err) {
             throw new Error(getErrorMessageResponse(err));
         }
     }
