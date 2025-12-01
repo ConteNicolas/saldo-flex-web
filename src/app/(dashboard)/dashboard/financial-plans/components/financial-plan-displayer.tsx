@@ -10,6 +10,8 @@ import { useAtom } from "jotai"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import EmptyFinancialPlan from "./empty-financial-plan"
+import FinancialPlanTag from "./financial-plan-tag"
+import { IFinancialPlanTag } from "@/features/financial-plans/models/financial-plan-model"
 
 export default function FinancialPlanDisplayer() {
     const { isPending, isSuccess, data } = useGetAllFinancialPlans({ page: 1, pageSize: 10 })
@@ -70,7 +72,7 @@ export default function FinancialPlanDisplayer() {
                                         {new Date(plan.updatedAt).toLocaleDateString("es-AR")}
                                     </span>
                                 </div>
-
+                                <FinancialPlanTag tags={plan.tags as IFinancialPlanTag[]} />
                             </CardContent>
                         </Card>
                     ))}
