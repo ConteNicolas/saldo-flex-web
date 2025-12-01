@@ -12,9 +12,10 @@ import { useEffect } from "react"
 import EmptyFinancialPlan from "./empty-financial-plan"
 import FinancialPlanTag from "./financial-plan-tag"
 import { IFinancialPlanTag } from "@/features/financial-plans/models/financial-plan-model"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/shared/components/ui/dropdown-menu"
-import { EllipsisIcon, PencilIcon, TrashIcon } from "lucide-react"
 import { filtersAtom } from "@/stores/filters-store"
+import FinancialPlanCardMenu from "./financial-plan-card-menu"
+import Link from "next/link"
+import { ArrowRightIcon } from "lucide-react"
 
 export default function FinancialPlanDisplayer() {
     const filters = useAtomValue(filtersAtom);
@@ -54,28 +55,13 @@ export default function FinancialPlanDisplayer() {
     return (
         <div className="w-full h-[70%]">
             <ScrollArea className="w-full h-[85%]">
-                <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 p-2">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6">
                     {financialPlans?.map((plan) => (
                         <Card
                             key={plan.id}
-                            onClick={() => router.push(`/dashboard/financial-plans/${plan.id}`)}
-                            className="relative cursor-pointer transition rounded-xl shadow-sm border-green-500 hover:bg-green-700 hover:text-white hover:shadow-lg dark:border-green-500 dark:hover:border-green-200"
+                            className="relative transition rounded-xl shadow-sm border-green-500 hover:bg-green-700 hover:text-white hover:shadow-lg dark:border-green-500 dark:hover:border-green-200"
                         >
-
-                            <DropdownMenu>
-                                <DropdownMenuTrigger className="absolute top-2 right-4 cursor-pointer">
-                                    <EllipsisIcon className="hover:text-green-600" />
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    <DropdownMenuItem>
-                                        Delete <TrashIcon />
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Edit <PencilIcon />
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-
+                            <FinancialPlanCardMenu financialPlan={plan} />
                             <CardContent className="p-5 flex flex-col gap-3 min-w-0">
 
                                 <h3 className="text-lg font-semibold leading-tight wrap-break-word truncate">
@@ -105,6 +91,9 @@ export default function FinancialPlanDisplayer() {
                                     )}
                                 </div>
                                 <FinancialPlanTag tags={plan.tags as IFinancialPlanTag[]} />
+                                <Link className="text-xs bottom-5 right-6 absolute hover:text-green-300 flex flex-row items-center justify-center" href={`/dashboard/financial-plans/${plan.id}`}>
+                                    See more <ArrowRightIcon className="w-4! h-4! ml-1" />
+                                </Link>
                             </CardContent>
                         </Card>
                     ))}

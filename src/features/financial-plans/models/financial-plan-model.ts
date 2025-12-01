@@ -23,6 +23,8 @@ export interface IGetAllFinancialPlansResponse extends IFinancialPlan { }
 
 export interface ICreateFinancialPlanResponse extends IFinancialPlan { }
 
+export interface IUpdateFinancialPlanReponse extends IFinancialPlan { }
+ 
 export interface IGetAllFinancialPlansRequest {
     page: number;
     pageSize: number;
@@ -37,3 +39,8 @@ export interface ICreateFinancialPlanRequest {
     description?: string;
 }
 
+export interface IUpdateFinancialPlanRequest {
+    id: string;
+    name?: string;
+    description?: string;
+}

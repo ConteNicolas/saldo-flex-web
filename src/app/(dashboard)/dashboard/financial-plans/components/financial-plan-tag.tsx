@@ -6,6 +6,11 @@ interface IFinancialPlanTagProps {
 }
 
 export default function FinancialPlanTag({ tags }: IFinancialPlanTagProps) {
+    if (!tags.length) {
+        return (
+            <Badge variant="outline" className="relative top-6 bg-green-600 text-white">No duplicates</Badge>
+        );
+    }
     return (
         <div className="w-full flex flex-wrap gap-2 relative top-6">
             {tags.map((tag) => (
