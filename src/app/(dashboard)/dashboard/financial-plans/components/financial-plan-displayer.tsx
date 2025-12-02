@@ -10,8 +10,7 @@ import { useAtom, useAtomValue } from "jotai"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import EmptyFinancialPlan from "./empty-financial-plan"
-import FinancialPlanTag from "./financial-plan-tag"
-import { IFinancialPlanTag } from "@/features/financial-plans/models/financial-plan-model"
+import FinancialPlanStatusTag from "./financial-plan-status-tag"
 import { filtersAtom } from "@/stores/filters-store"
 import FinancialPlanCardMenu from "./financial-plan-card-menu"
 import Link from "next/link"
@@ -80,8 +79,8 @@ export default function FinancialPlanDisplayer() {
                                     <span>
                                         Creado el:{" "}
                                         {new Date(plan.createdAt).toLocaleDateString("es-AR")}
-                                    </span>
-                                    {plan.updatedAt.toString() != "0001-01-01T00:00:00" ? (
+                                    </span> 
+                                    {plan.updatedAt ? (
                                         <span>
                                             Última actualización {" "}
                                             {new Date(plan.updatedAt).toLocaleDateString("es-AR")}
@@ -90,7 +89,7 @@ export default function FinancialPlanDisplayer() {
                                         <span>Sin actualizaciones</span>
                                     )}
                                 </div>
-                                <FinancialPlanTag tags={plan.tags as IFinancialPlanTag[]} />
+                                <FinancialPlanStatusTag financialPlan={plan} />
                                 <Link className="text-xs bottom-5 right-6 absolute hover:text-green-300 flex flex-row items-center justify-center" href={`/dashboard/financial-plans/${plan.id}`}>
                                     See more <ArrowRightIcon className="w-4! h-4! ml-1" />
                                 </Link>
