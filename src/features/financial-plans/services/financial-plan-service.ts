@@ -1,5 +1,5 @@
 import { BaseService } from "@/shared/services/base-service";
-import { ICreateFinancialPlanRequest, ICreateFinancialPlanResponse, IGetAllFinancialPlansRequest, IGetAllFinancialPlansResponse, IUpdateFinancialPlanReponse, IUpdateFinancialPlanRequest } from "../models/financial-plan-model";
+import { ICreateFinancialPlanRequest, ICreateFinancialPlanResponse, IGetAllFinancialPlansRequest, IGetAllFinancialPlansResponse, IUpdateFinancialPlanReponse, IUpdateFinancialPlanRequest, IUpdateFinancialPlanStatusRequest, IUpdateFinancialPlanStatusResponse } from "../models/financial-plan-model";
 import { IPaginatedResult } from "@/shared/models/pagination-model";
 import { getErrorMessageResponse, parseObjToQueryString } from "@/shared/lib/utils";
 
@@ -49,6 +49,16 @@ class FinancialPlanService extends BaseService {
             throw new Error(getErrorMessageResponse(err));
         }
     }
+
+    async updateStatus(req: IUpdateFinancialPlanStatusRequest) : Promise<IUpdateFinancialPlanStatusResponse> {
+        try {
+            const response = await this.api.put<IUpdateFinancialPlanStatusResponse>(`financial-plans/${req.id}/status`, { });
+
+            return response.data;
+        } catch(err) {
+            throw new Error(getErrorMessageResponse(err));
+        }
+    }    
 }
 
 export const financialPlanService = new FinancialPlanService();

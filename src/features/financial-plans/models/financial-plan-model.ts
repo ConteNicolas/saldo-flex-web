@@ -3,8 +3,8 @@ import { OrderDirectionTypes } from "@/shared/enums/order-direction-types.enum";
 import { OrderByTypes } from "@/shared/enums/orderby-types-enum";
 
 export enum FinancialPlanStatusEnum {
-    Active = 0,
-    Archived = 1
+    Active = 'Active',
+    Archived = 'Archived'
 }
 
 export interface IFinancialPlan {
@@ -13,7 +13,6 @@ export interface IFinancialPlan {
     description?: string;
     createdAt: Date;
     updatedAt: Date;
-    status: FinancialPlanStatusEnum;
     statusDescription: string;
 }
 
@@ -22,7 +21,9 @@ export interface IGetAllFinancialPlansResponse extends IFinancialPlan { }
 export interface ICreateFinancialPlanResponse extends IFinancialPlan { }
 
 export interface IUpdateFinancialPlanReponse extends IFinancialPlan { }
- 
+
+export interface IUpdateFinancialPlanStatusResponse extends IFinancialPlan { }
+
 export interface IGetAllFinancialPlansRequest {
     page: number;
     pageSize: number;
@@ -41,5 +42,9 @@ export interface IUpdateFinancialPlanRequest {
     id: string;
     name?: string;
     description?: string;
-    status?: FinancialPlanStatusEnum;
 }
+
+export interface IUpdateFinancialPlanStatusRequest {
+    id: string;
+}
+
