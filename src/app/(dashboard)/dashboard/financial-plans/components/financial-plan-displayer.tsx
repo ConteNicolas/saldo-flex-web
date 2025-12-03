@@ -15,13 +15,16 @@ import { filtersAtom } from "@/stores/filters-store"
 import FinancialPlanCardMenu from "./financial-plan-card-menu"
 import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
+import { paginationAtom } from "@/stores/pagination-store"
 
 export default function FinancialPlanDisplayer() {
+    const [pagination, setPagination] = useAtom(paginationAtom);
+
     const filters = useAtomValue(filtersAtom);
 
-    const { isPending, isSuccess, data } = useGetAllFinancialPlans({ 
-        page: 1, 
-        pageSize: 10, 
+    const { isPending, isSuccess, data } = useGetAllFinancialPlans({
+        page: pagination.page,
+        pageSize: pagination.pageSize,
         name: filters.nameFilter,
         orderBy: filters.orderBy,
         dateFilter: filters.dateFilter,
@@ -30,13 +33,19 @@ export default function FinancialPlanDisplayer() {
 
     const [financialPlans, setFinancialPlans] = useAtom(financialPlanAtom);
 
-    const router = useRouter();
-
     useEffect(() => {
         if (isSuccess && data) {
             setFinancialPlans(data.items);
+            setPagination((prev) => ({
+                ...prev,
+                page: data.currentPage,
+                totalPages: data.totalPages,
+                totalItems: data.totalItems,
+                hasPreviousPage: data.hasPreviousPage,
+                hasNextPage: data.hasNextPage,
+            }));
         }
-    }, [isSuccess, data])
+    }, [isSuccess, data, setFinancialPlans, setPagination])
 
 
     if (isPending) {
@@ -79,7 +88,7 @@ export default function FinancialPlanDisplayer() {
                                     <span>
                                         Creado el:{" "}
                                         {new Date(plan.createdAt).toLocaleDateString("es-AR")}
-                                    </span> 
+                                    </span>
                                     {plan.updatedAt ? (
                                         <span>
                                             Última actualización {" "}

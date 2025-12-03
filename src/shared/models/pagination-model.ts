@@ -3,5 +3,7 @@ export interface IPaginatedResult<T>{
     currentPage: number;
     totalPages: number;
     totalItems: number;
-    items: T[]
+    items: T[];
+    hasPreviousPage: boolean;
+    hasNextPage: boolean;
 }
