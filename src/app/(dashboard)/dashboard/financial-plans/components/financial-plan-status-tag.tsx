@@ -6,14 +6,18 @@ interface IFinancialPlanStatusTagProps {
 }
 
 const statusColor = {
-    0: "bg-green-500 text-white",
-    1: "bg-orange-500 text-white"
+    'Active': "bg-green-500 text-white",
+    'Archived': "bg-orange-500 text-white"
 }
 
 export default function FinancialPlanStatusTag({ financialPlan }: IFinancialPlanStatusTagProps) {
     return (
         <div className="w-full flex flex-wrap gap-2 relative top-6">
-            <Badge variant="outline" className={`${statusColor[financialPlan.status]} text-white`}>{financialPlan.statusDescription}</Badge>
+            <Badge 
+                variant="outline" 
+                className={`${statusColor[financialPlan.statusDescription as keyof typeof statusColor]} text-white`}>
+                {financialPlan.statusDescription}
+            </Badge>
         </div>
     )
 }
