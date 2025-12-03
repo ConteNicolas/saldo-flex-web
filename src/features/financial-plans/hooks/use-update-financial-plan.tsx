@@ -13,13 +13,11 @@ export default function useUpdateFinancialPlan() {
         mutationFn: (data: IUpdateFinancialPlanRequest) => financialPlanService.update(data),
         onSuccess: (data) => {
             toast.success("Financial plan updated successfully");
-            setFinancialPlan(prev => {
-                return prev.map(plan => plan.id === data.id ? data : plan)
-            });
+            setFinancialPlan(prev => [data, ...prev.filter(plan => plan.id !== data.id)]);
         },
         onError: (err) => {
             toast.error(err.message);
-        } 
+        }
     })
 
 }
