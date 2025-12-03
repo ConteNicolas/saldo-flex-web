@@ -1,10 +1,11 @@
 import useDeleteFinancialPlan from "@/features/financial-plans/hooks/use-delete-financial-plan";
-import { FinancialPlanStatusEnum, IFinancialPlan } from "@/features/financial-plans/models/financial-plan-model";
+import { IFinancialPlan } from "@/features/financial-plans/models/financial-plan-model";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/components/ui/dropdown-menu";
 import { EllipsisIcon, TrashIcon, PencilIcon, PackageOpenIcon, ArchiveXIcon, ArchiveRestoreIcon } from "lucide-react";
 import EditFinancialPlanSheet from "./edit-financial-plan-sheet";
 import { useState } from "react";
-import useUpdateFinancialPlan from "@/features/financial-plans/hooks/use-update-financial-plan";
+import ConfirmDeleteAlert from "@/shared/components/confirm-delete-alert";
+import useUpdateFinancialStatusPlan from "@/features/financial-plans/hooks/use-update-financial-plan-status";
 
 
 interface FinancialPlanCardMenuProps {
@@ -14,8 +15,10 @@ interface FinancialPlanCardMenuProps {
 
 export default function FinancialPlanCardMenu({ financialPlan }: FinancialPlanCardMenuProps) {
     const { mutateAsync } = useDeleteFinancialPlan();
-    const { mutateAsync: updateMutateAsync } = useUpdateFinancialPlan();
-    const [open, setOpen] = useState(false);
+    const { mutateAsync: updateMutateAsync } = useUpdateFinancialStatusPlan();
+
+    const [editSheetOpen, setEditSheetOpen] = useState(false);
+    const [confirmAlertOpen, setConfirmAlertOpen] = useState(false);
 
     return (
         <>
@@ -24,25 +27,32 @@ export default function FinancialPlanCardMenu({ financialPlan }: FinancialPlanCa
                     <EllipsisIcon className="hover:text-green-600" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                    <DropdownMenuItem onClick={async () => mutateAsync(financialPlan.id)}>
+                    <DropdownMenuItem className="w-full flex flex-row items-center justify-between p-3 cursor-pointer" onClick={() => setConfirmAlertOpen(true)}>
                         Delete <TrashIcon />
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setOpen(true)}>
+                    <DropdownMenuItem className="w-full flex flex-row items-center justify-between p-3 cursor-pointer" onClick={() => setEditSheetOpen(true)}>
                         Edit <PencilIcon />
                     </DropdownMenuItem>
-                    {financialPlan.status === FinancialPlanStatusEnum.Active && (
-                        <DropdownMenuItem onClick={async () => updateMutateAsync({ id: financialPlan.id, status: FinancialPlanStatusEnum.Archived })}>
+                    {financialPlan.statusDescription === 'Active' && (
+                        <DropdownMenuItem className="w-full flex flex-row items-center justify-between p-3 cursor-pointer" onClick={async () => updateMutateAsync({ id: financialPlan.id })}>
                             Archived <ArchiveXIcon />
                         </DropdownMenuItem>
                     )}
-                    {financialPlan.status === FinancialPlanStatusEnum.Archived && (
-                        <DropdownMenuItem onClick={async () => updateMutateAsync({ id: financialPlan.id, status: FinancialPlanStatusEnum.Active })}>
+                    {financialPlan.statusDescription === 'Archived' && (
+                        <DropdownMenuItem className="w-full flex flex-row items-center justify-between p-3 cursor-pointer" onClick={async () => updateMutateAsync({ id: financialPlan.id })}>
                             Active <ArchiveRestoreIcon />
                         </DropdownMenuItem>
                     )}
                 </DropdownMenuContent>
             </DropdownMenu>
-            <EditFinancialPlanSheet open={open} setOpen={setOpen} financialPlan={financialPlan} />
+            <EditFinancialPlanSheet open={editSheetOpen} setOpen={setEditSheetOpen} financialPlan={financialPlan} />
+            <ConfirmDeleteAlert 
+                open={confirmAlertOpen} 
+                setOpen={setConfirmAlertOpen}  
+                title={`Are you sure you want to delete "${financialPlan.name}"?`}
+                description="This action cannot be undone. You can archive it instead."
+                onConfirm={() => mutateAsync(financialPlan.id)}
+            />
         </>
 
     )
