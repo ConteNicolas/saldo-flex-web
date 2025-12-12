@@ -14,8 +14,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <ThemeProvider>
                     <SidebarProvider>
                         <DashboardSidebar />
-                        <SidebarTrigger />
                         <div className="w-screen h-screen overflow-hidden transition">
+                            <SidebarTrigger className="absolute" />
                             {children}
                             <ThemeSwitcher />
                         </div>
