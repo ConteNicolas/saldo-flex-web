@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 
 const queryClient = new QueryClient();
 
-export default function Provider({
+export default function MainProvider({
     children,
 }: Readonly<{
     children: React.ReactNode;

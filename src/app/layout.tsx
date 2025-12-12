@@ -1,6 +1,6 @@
 import "./globals.css";
 import { ComfortaaFont } from "@/shared/fonts/comfortaa.font";
-import Provider from "@/shared/providers/provider";
+import MainProvider from "@/shared/providers/main-provider";
 
 export default function RootLayout({
   children,
@@ -12,9 +12,9 @@ export default function RootLayout({
       <body
         className={`${ComfortaaFont.className} h-screen w-screen`}
       >
-        <Provider>
+        <MainProvider>
           {children}
-        </Provider>
+        </MainProvider>
       </body>
     </html>
   );
