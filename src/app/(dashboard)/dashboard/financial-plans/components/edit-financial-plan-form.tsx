@@ -39,7 +39,6 @@ export function EditFinancialPlanForm( { closeSheet, financialPlan }: IEditFinan
             id: financialPlan.id,
             name: values.name,
             description: values.description,
-            status: financialPlan.status
         } 
         await mutateAsync(req);
         form.reset();
