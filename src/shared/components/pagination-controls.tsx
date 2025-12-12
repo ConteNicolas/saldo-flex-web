@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationEllipsis, PaginationNext } from "./ui/pagination";
 import { paginationAtom } from "@/stores/pagination-store";
 
-export default function PaginationWrapper() {
+export default function PaginationControls() {
     const [pagination, setPagination] = useAtom(paginationAtom);
     const { page: currentPage, totalPages, hasPreviousPage, hasNextPage } = pagination;
 

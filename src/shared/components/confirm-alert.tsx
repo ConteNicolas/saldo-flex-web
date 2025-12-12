@@ -9,7 +9,7 @@ interface IConfirmDeleteAlertProps {
     onConfirm: () => void
 }
 
-export default function ConfirmDeleteAlert({
+export default function ConfirmAlert({
     open,
     setOpen,
     title,
