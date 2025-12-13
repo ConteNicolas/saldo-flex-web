@@ -1,5 +1,5 @@
 import { filtersAtom } from "@/stores/filters-store";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { DateFilterTypes } from "../enums/date-filter-types-enum";
 import { OrderByTypes } from "../enums/orderby-types-enum";
 import { OrderDirectionTypes } from "../enums/order-direction-types.enum";
@@ -16,9 +16,12 @@ export function useFilters() {
             nameFilter: undefined
         })
     }
+
+    const filters = useAtomValue(filtersAtom)
     
     return {
         setFilters,
-        resetFilters
+        resetFilters,
+        filters
     }
 }
