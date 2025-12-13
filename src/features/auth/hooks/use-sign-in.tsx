@@ -12,9 +12,6 @@ export default function useSignIn() {
         mutationFn: async (data: ISignInRequest) => await authService.signIn(data),
         onSuccess: (data) => {
             sessionStorage.setItem("sf_token", data.token);
-
-            toast.success(`Welcome!`);
-
             router.push("/dashboard");
         },
         onError: (err) => {
