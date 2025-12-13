@@ -9,18 +9,17 @@ import { financialPlanAtom } from "@/stores/financial-plan-store"
 import { useAtom, useAtomValue } from "jotai"
 import { useEffect } from "react"
 import FinancialPlanStatusTag from "./financial-plan-status-tag"
-import { filtersAtom } from "@/stores/filters-store"
 import FinancialPlanCardMenu from "./financial-plan-card-menu"
 import Link from "next/link"
 import { ArrowRightIcon, ClipboardPenIcon } from "lucide-react"
-import { paginationAtom } from "@/stores/pagination-store"
 import EmptyState from "@/shared/components/empty-state"
 import CreateFinancialPlanSheet from "./create-financial-plan-sheet"
+import usePagination from "@/shared/hooks/use-pagination"
+import { useFilters } from "@/shared/hooks/use-filters"
 
 export default function FinancialPlanDisplayer() {
-    const [pagination, setPagination] = useAtom(paginationAtom);
-
-    const filters = useAtomValue(filtersAtom);
+    const { pagination, setPagination } = usePagination();
+    const { filters } = useFilters();
 
     const { isPending, isSuccess, data } = useGetAllFinancialPlans({
         page: pagination.page,
@@ -92,16 +91,16 @@ export default function FinancialPlanDisplayer() {
 
                                 <div className="text-xs mt-auto opacity-70 flex flex-col gap-1">
                                     <span>
-                                        Creado el:{" "}
+                                        Creation date:{" "}
                                         {new Date(plan.createdAt).toLocaleDateString("es-AR")}
                                     </span>
                                     {plan.updatedAt ? (
                                         <span>
-                                            Última actualización {" "}
+                                            Last update {" "}
                                             {new Date(plan.updatedAt).toLocaleDateString("es-AR")}
                                         </span>
                                     ) : (
-                                        <span>Sin actualizaciones</span>
+                                        <span>No updates</span>
                                     )}
                                 </div>
                                 <FinancialPlanStatusTag financialPlan={plan} />
