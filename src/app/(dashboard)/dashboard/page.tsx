@@ -1,6 +1,5 @@
 "use client"
 
-import { Button } from "@/shared/components/ui/button";
 import { Card, CardContent } from "@/shared/components/ui/card";
 import { userAtom } from "@/stores/user-store";
 import { useAtomValue } from "jotai";
@@ -18,7 +17,7 @@ const introCards = [
         "title": "Create a tag",
         "icon": TagsIcon,
         "icon-color": "text-orange-500",
-        "url": "/tags"
+        "url": "/dashboard/tags"
     },
     {
         "title": "Set up currency",
@@ -30,7 +29,6 @@ const introCards = [
 
 export default function DashboardPage() {
     const user = useAtomValue(userAtom);
-
     return (
         <div className="w-full h-full flex flex-col items-center justify-center">
             <h1 className="text-6xl">Hi, <span className="text-green-500">{user.firstname}</span></h1>
