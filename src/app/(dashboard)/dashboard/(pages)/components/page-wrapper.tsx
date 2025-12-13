@@ -9,7 +9,7 @@ interface IPageWrapperProps {
     breadcrumb: [],
     headerTitle: string,
     headerTitleIcon: ReactNode,
-    headerAction: ReactNode,
+    headerAction?: ReactNode,
     children: ReactNode
 }
 
